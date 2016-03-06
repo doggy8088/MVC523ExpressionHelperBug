@@ -1,0 +1,28 @@
+﻿@using MVC523ExpressionHelperBug.Models
+@model IEnumerable<Person>
+<html>
+<body>
+
+    第一筆資料的欄位名稱：@Html.NameFor(m => m.First().Name)<br />
+
+    @{
+        var data = Model.ToArray();
+    }
+
+    @using (Html.BeginForm())
+    {
+        <ol>
+            @for (var i = 0; i < data.Length; ++i)
+            {
+            <li>
+                @Html.DisplayNameFor(m => m.Name)：
+                @Html.TextBoxFor(m => data[i].Name)
+                ( 欄位名稱: @Html.NameFor(m => data[i].Name) )
+
+            </li>
+            }
+        </ol>
+    }
+
+</body>
+</html>
